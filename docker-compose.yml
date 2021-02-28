@@ -16,7 +16,7 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     networks:
       - teachers-task
-      - 
+      
   nginx:
     image: nginx:stable-alpine
     container_name: tt-nginx
