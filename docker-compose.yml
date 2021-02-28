@@ -4,6 +4,19 @@ networks:
   teachers-task:
 
 services:
+  mysql:
+    image: mysql:5.7
+    container_name: tt-mysql57
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - teachers-task
+      - 
   nginx:
     image: nginx:stable-alpine
     container_name: tt-nginx
@@ -28,18 +41,5 @@ services:
     - ./:/var/www/html
     ports:
     - "9000:9000"
-    networks:
-      - teachers-task
-
-  mysql:
-    image: mysql:5.7
-    container_name: tt-mysql57
-    restart: always
-    ports:
-    - "3306:3306"
-    volumes:
-    - ./mysql:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
     networks:
       - teachers-task
