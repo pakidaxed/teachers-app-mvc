@@ -28,11 +28,14 @@ y | Y | yes)
   printf "${ORANGE}Updating composer and downloading all vendors...${NOCOLOR}\n"
   docker exec -it tt-php74 composer update
   docker exec -it tt-php74 composer dump-autoload
-  sleep 1
   printf "${ORANGE}Creating main database and generating tables...${NOCOLOR}\n"
-  docker exec -it tt-mysql57 mysql -u root -psecret  -e "$(cat install.sql)"
-  sleep 2
+  docker exec -it tt-mysql57 mysql -u root -psecret -e "$(cat install.sql)"
+  sleep 5 # giving some time for mysql folder to generate to be sure
   printf "\n"
+  printf "${ORANGE}Deleting installation files...${NOCOLOR}\n"
+  rm install.sql
+  rm $0
+  printf "${GREEN}DONE${NOCOLOR}\n"
   sleep 1
   printf "${GREEN}Teachers APP successfully installed\n"
   sleep 1
