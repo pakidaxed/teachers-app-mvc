@@ -29,8 +29,8 @@ y | Y | yes)
   docker exec -it tt-php74 composer update
   docker exec -it tt-php74 composer dump-autoload
   printf "${ORANGE}Creating main database and generating tables...${NOCOLOR}\n"
-  sleep 14 # giving some time for mysql folder to generate to be sure
-  # tested on server, it's sometime not enough 10 seconds, and gets strange errors
+  sleep 20 # giving some time for mysql folder to generate, just to be sure
+  # tested on 8gb server, it's sometime not enough 10 seconds, and gets strange errors
   docker exec -it tt-mysql57 mysql -u root -psecret -e "$(cat install.sql)"
   printf "\n"
   printf "${ORANGE}Deleting installation files...${NOCOLOR}\n"
