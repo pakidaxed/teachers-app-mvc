@@ -1,0 +1,20 @@
+{
+    "name": "pakidaxed/my-mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tomas Jucius",
+            "email": "jucius.tomas@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-json": "*",
+      "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App",
+            "Core\\": "Core"
+        }
+    }
+}

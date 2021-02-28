@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# Installing Teachers APP
+
+# ----------------------------------
+# Colors
+# ----------------------------------
+# shellcheck disable=SC2034
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+
+printf "\n"
+# shellcheck disable=SC2059
+printf "${ORANGE}####### Welcome to the Teachers APP Installation #######\n"
+printf "\n${NOCOLOR}"
+
+read -p "Are you ready to start the installation ? (yes/no)?" choice
+
+case "$choice" in
+y | Y | yes)
+  printf "\n"
+  printf "${ORANGE}Closing Docker if any exists...${NOCOLOR}\n"
+  docker-compose down
+  printf "${ORANGE}Starting Docker...${NOCOLOR}\n"
+  docker-compose up -d --build
+  printf "${ORANGE}Updating composer and downloading all vendors...${NOCOLOR}\n"
+  docker exec -it tt-php74 composer update
+  docker exec -it tt-php74 composer dump-autoload
+  sleep 1
+  printf "${ORANGE}Creating main database and generating tables...${NOCOLOR}\n"
+  docker exec -it tt-mysql57 mysql -u root -psecret  -e "$(cat install.sql)"
+  sleep 2
+  printf "\n"
+  sleep 1
+  printf "${GREEN}Teachers APP successfully installed\n"
+  sleep 1
+  printf "Open your browser and enter your localhost address ex.: 127.0.0.1 or localhost\n"
+  sleep 1
+  printf "ENJOY ! © Tomas Jucius (jucius.tomas@gmail.com) 2021${NOCOLOR}\n"
+  ;;
+n | N | no)
+  exit
+  return 1
+  printf "${RED}Installation was canceled.${NOCOLOR}\n"
+  ;;
+*)
+  exit
+  return 1
+  printf "${RED}Invalid answer. YES (yes/y/Y) or NO (no/n/N) only${NOCOLOR}\n"
+  ;;
+esac

@@ -1,0 +1,45 @@
+version: "3"
+
+networks:
+  teachers-task:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: tt-nginx
+    ports:
+    - "80:80"
+    volumes:
+    - ./:/var/www/html
+    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - teachers-task
+
+  php:
+    image: php:7.4-fpm-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tt-php74
+    volumes:
+    - ./:/var/www/html
+    ports:
+    - "9000:9000"
+    networks:
+      - teachers-task
+
+  mysql:
+    image: mysql:5.7
+    container_name: tt-mysql57
+    restart: always
+    ports:
+    - "3306:3306"
+    volumes:
+    - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - teachers-task
