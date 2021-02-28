@@ -2,7 +2,7 @@
     <h1>Teachers Task</h1>
     <div class="container text-center">
         <h1 class="mt-100">Select Project</h1>
-        <span class="add-project-span">+ New project</span>
+        <span class="add-project-span" onclick="openAddNewProject()">+ New project</span>
         <div id="projects_list">
             <?php if (!empty($data)): ?>
                 <?php foreach ($data as $project): ?>

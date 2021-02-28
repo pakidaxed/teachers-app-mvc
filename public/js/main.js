@@ -2,9 +2,11 @@ function closeModal() {
     document.getElementById('modal').style.display = 'none'
 }
 
-document.querySelector('.add-project-span').addEventListener('click', (e) => {
-    document.getElementById('modal').style.display = 'flex'
-})
+function openAddNewProject() {
+    document.querySelector('.add-project-span').addEventListener('click', (e) => {
+        document.getElementById('modal').style.display = 'flex'
+    })
+}
 
 function openAddNewStudent() {
     document.getElementById('new_student').style.display = 'inline-flex'
@@ -18,7 +20,7 @@ theForm.addEventListener('click', e => {
     const groupsTotal = document.getElementById('groups_total').value
     const studentsPerGroup = document.getElementById('students_per_group').value
 
-    fetch("http://localhost/api/add", {
+    fetch(window.location.origin + "/api/add", {
         method: "POST",
 
         body: JSON.stringify({
