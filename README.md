@@ -1,4 +1,4 @@
-# teachers-app
+# teachers-app-mvc
 Teachers APP (MVC)
 
 1. Clone the repo (git clone https://github.com/pakidaxed/techers-app-mvc.git)
