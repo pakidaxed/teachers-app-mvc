@@ -1,6 +1,8 @@
 # teachers-app-mvc
 Teachers APP (MVC)
 
+Must have Docker installed
+
 1. Clone the repo (git clone https://github.com/pakidaxed/teachers-app-mvc.git)
 2. Go to app dir (cd teachers-app-mvc)
 3. Run ./install (use sudo if needed for permissions)
