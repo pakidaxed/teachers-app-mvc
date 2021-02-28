@@ -29,7 +29,7 @@ y | Y | yes)
   docker exec -it tt-php74 composer update
   docker exec -it tt-php74 composer dump-autoload
   printf "${ORANGE}Creating main database and generating tables...${NOCOLOR}\n"
-  sleep 6 # giving some time for mysql folder to generate to be sure
+  sleep 10 # giving some time for mysql folder to generate to be sure
   docker exec -it tt-mysql57 mysql -u root -psecret -e "$(cat install.sql)"
   printf "\n"
   printf "${ORANGE}Deleting installation files...${NOCOLOR}\n"
