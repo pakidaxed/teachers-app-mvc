@@ -10,11 +10,10 @@ function openAddNewProject() {
 
 function openAddNewStudent() {
     document.getElementById('new_student').style.display = 'inline-flex'
-    document.getElementById('student_name').reset()
 }
 
-function addNewProject() {
-    const theForm = document.getElementById('submitBtn')
+const theForm = document.getElementById('submitBtn')
+if (theForm) {
     theForm.addEventListener('click', e => {
         e.preventDefault()
         const projectName = document.getElementById('project_name').value
