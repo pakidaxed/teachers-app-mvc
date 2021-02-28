@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button id="submitBtn" class="button-full">Create new project</button>
+                <button id="submitBtn" class="button-full" onclick="addNewProject()">Create new project</button>
             </div>
         </form>
     </div>
